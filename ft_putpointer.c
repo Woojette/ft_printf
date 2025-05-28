@@ -1,15 +1,31 @@
-#include "ft_libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putpointer.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wooyang <wooyang@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/28 17:44:51 by wooyang           #+#    #+#             */
+/*   Updated: 2025/05/28 17:44:53 by wooyang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void    ft_putpointer(void *n)
+#include "ft_printf.h"
+
+int	ft_putpointer(void *n)
 {
-    // printf("%lu\n", n);
-    if (!n)
-    {
-        write(1, "(nil)", 5);
-        return ;
-    }
-    write(1, "0x", 2);
-    ft_putnbr_hexa_min((unsigned long)n);
+	int	i;
+
+	i = 0;
+	if (!n)
+	{
+		write(1, "(nil)", 5);
+		return (5);
+	}
+	write(1, "0x", 2);
+	i = 2;
+	i += ft_putnbr_hexa_min((unsigned long)n);
+	return (i);
 }
 
 // int main()

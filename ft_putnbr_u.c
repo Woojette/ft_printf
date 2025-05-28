@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_u.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wooyang <wooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 16:41:37 by wooyang           #+#    #+#             */
-/*   Updated: 2025/05/27 16:44:19 by wooyang          ###   ########.fr       */
+/*   Created: 2025/05/28 17:38:34 by wooyang           #+#    #+#             */
+/*   Updated: 2025/05/28 17:40:36 by wooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_libft.h"
+#include "ft_printf.h"
 
-// void	ft_putchar(char c)
-// {
-// 	write(1, &c, 1);
-// }
-
-void	ft_putnbr_u(unsigned int n)
+int	ft_putnbr_u(unsigned int n)
 {
 	long	nb;
+	int		i;
 
 	nb = n;
+	i = 0;
 	if (nb < 0)
 	{
 		write(1, "-", 1);
 		nb = nb * (-1);
+		i++;
 	}
 	if (nb > 9)
-		ft_putnbr(nb / 10);
-	ft_putchar((nb % 10) + '0');
+		i += ft_putnbr(nb / 10);
+	i += ft_putchar((nb % 10) + '0');
+	return (i);
 }
 /*
 int	main (void)

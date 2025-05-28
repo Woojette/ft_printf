@@ -1,42 +1,57 @@
-#include "ft_libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wooyang <wooyang@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/28 17:37:38 by wooyang           #+#    #+#             */
+/*   Updated: 2025/05/28 17:47:09 by wooyang          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	ft_afficher(const char *str, int i, va_list args)
+#include "ft_printf.h"
+
+int	ft_afficher(const char *str, int i, va_list args)
 {
 	int	count;
 
 	count = 0;
 	if (str[i + 1] == 'c')
-		ft_putchar(va_arg(args, int));
+		count += ft_putchar(va_arg(args, int));
 	if (str[i + 1] == 's')
-		ft_putstr(va_arg(args, char *));
+		count += ft_putstr(va_arg(args, char *));
 	if (str[i + 1] == 'p')
-		ft_putpointer(va_arg(args, void *));
+		count += ft_putpointer(va_arg(args, void *));
 	if (str[i + 1] == 'd' || str[i + 1] == 'i')
-		ft_putnbr(va_arg(args, int));
+		count += ft_putnbr(va_arg(args, int));
 	if (str[i + 1] == 'u')
-		ft_putnbr_u(va_arg(args, unsigned int));
+		count += ft_putnbr_u(va_arg(args, unsigned int));
 	if (str[i + 1] == 'x')
-		ft_putnbr_hexa_min(va_arg(args, unsigned int));
+		count += ft_putnbr_hexa_min(va_arg(args, unsigned int));
 	if (str[i + 1] == 'X')
-		ft_putnbr_hexa_max(va_arg(args, unsigned int));
+		count += ft_putnbr_hexa_max(va_arg(args, unsigned int));
 	if (str[i + 1] == '%')
-		write(1, "%", 1);
+		count += write(1, "%", 1);
+	return (count);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
-	va_start(args, str);
-	int	i;
-	int count;
+	int		i;
+	int		count;
 
+	va_start(args, str);
 	count = 0;
 	i = 0;
+	if (!str)
+		return (-1);
 	while (str[i])
 	{
 		if (str[i] == '%')
 		{
-			ft_afficher(str, i, args);
+			count += ft_afficher(str, i, args);
 			i++;
 		}
 		else
@@ -47,10 +62,56 @@ int	ft_printf(const char *str, ...)
 		i++;
 	}
 	va_end(args);
-	return (i);
+	return (count);
 }
 
+/*
 int main()
 {
-	printf("byte:%d",  printf("%s", "Bonjour"));
-}
+
+	char *p = NULL;
+
+	printf(" || byte:%d\n", ft_printf("%c %c %c",100, 'j', 'a'));
+	printf(" || byte:%d\n", printf("%c %c %c",100, 'j', 'a'));
+
+	write(1,"\n",1);
+	printf(" || byte:%d\n", ft_printf("%s %s %s", "test", p, "bonjour"));
+	printf(" || byte:%d (vrai)\n", printf("%s %s %s", "test", p, "bonjour"));
+
+	write(1,"\n",1);
+	printf(" || byte:%d\n", ft_printf("%p %p %p", "test", p, "bonjour"));
+	printf(" || byte:%d (vrai)\n", printf("%p %p %p", "test", p, "bonjour"));
+
+	write(1,"\n",1);
+
+	printf(" || byte:%d\n", ft_printf("%d %d %d",123, INT_MIN, 2147483647));
+	printf(" || byte:%d\n", printf("%d %d %d",123, INT_MIN, 2147483647));
+
+	write(1,"\n",1);
+
+	printf(" || byte:%d\n", ft_printf("%i %i %i",123, INT_MIN, INT_MAX));
+	printf(" || byte:%d\n", printf("%i %i %i",123, INT_MIN, INT_MAX));
+
+	write(1,"\n",1);
+
+	printf(" || byte:%d\n", ft_printf("%x %x %x",123, INT_MIN, INT_MAX));
+	printf(" || byte:%d\n", printf("%x %x %x",123, INT_MIN, INT_MAX));
+
+	write(1,"\n",1);
+
+	printf(" || byte:%d\n", ft_printf("%X %X %X",123, INT_MIN, INT_MAX));
+	printf(" || byte:%d\n", printf("%X %X %X",123, INT_MIN, INT_MAX));
+
+	write(1,"\n",1);
+
+	printf(" || byte:%d\n", ft_printf("%u %u %u",123, INT_MIN, INT_MAX));
+	printf(" || byte:%d\n", printf("%u %u %u",123, INT_MIN, INT_MAX));
+
+	write(1,"\n",1);
+
+	printf(" || byte:%d\n", ft_printf(0));
+	printf(" || byte:%d\n", printf(0));
+
+	// write(1,"\n",1);
+
+}*/

@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_hexa_max.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wooyang <wooyang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 16:41:37 by wooyang           #+#    #+#             */
-/*   Updated: 2025/05/27 16:44:19 by wooyang          ###   ########.fr       */
+/*   Created: 2025/05/28 17:42:33 by wooyang           #+#    #+#             */
+/*   Updated: 2025/05/28 17:42:49 by wooyang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_libft.h"
+#include "ft_printf.h"
 
-void	ft_putnbr_hexa_max(unsigned int n)
+int	ft_putnbr_hexa_max(unsigned int n)
 {
 	long	nb;
+	int		i;
 
 	nb = n;
+	i = 0;
 	if (nb < 0)
 	{
 		write(1, "-", 1);
 		nb = nb * (-1);
 	}
 	if (nb > 15)
-		ft_putnbr_hexa_max(nb / 16);
-    write(1, &"0123456789ABCDEF"[nb % 16], 1);
+		i += ft_putnbr_hexa_max(nb / 16);
+	i += write(1, &"0123456789ABCDEF"[nb % 16], 1);
+	return (i);
 }
 /*
 int	main (void)

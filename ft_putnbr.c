@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_libft.h"
+#include "ft_printf.h"
 
 // void	ft_putchar(char c)
 // {
@@ -36,14 +36,14 @@ int	ft_putnbr(int n)
 	return (i);
 }
 
-int	main (void)
-{
-	// ft_putnbr(-2147483648);
-	// write(1, "\n", 1);
-	// ft_putnbr(221);
-	// write(1, "\n", 1);
-	// ft_putnbr(-71);
-	printf(" byte%d\n", printf("%d", INT_MIN));
-	printf(" byte%d\n", ft_putnbr(-2147483648));
-	return (0);
-}
+// int	main (void)
+// {
+// 	// ft_putnbr(-2147483648);
+// 	// write(1, "\n", 1);
+// 	// ft_putnbr(221);
+// 	// write(1, "\n", 1);
+// 	// ft_putnbr(-71);
+// 	printf(" byte%d\n", printf("%d", INT_MIN));
+// 	printf(" byte%d\n", ft_putnbr(-2147483648));
+// 	return (0);
+// }
