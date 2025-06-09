@@ -70,6 +70,7 @@ int main()
 {
 
 	char *p = NULL;
+	// int a = 123456;
 
 	printf(" || byte:%d\n", ft_printf("%c %c %c",100, 'j', 'a'));
 	printf(" || byte:%d\n", printf("%c %c %c",100, 'j', 'a'));
@@ -79,8 +80,8 @@ int main()
 	printf(" || byte:%d (vrai)\n", printf("%s %s %s", "test", p, "bonjour"));
 
 	write(1,"\n",1);
-	printf(" || byte:%d\n", ft_printf("%p %p %p", "test", p, "bonjour"));
-	printf(" || byte:%d (vrai)\n", printf("%p %p %p", "test", p, "bonjour"));
+	printf(" || byte:%d\n", ft_printf("%p %p %p", "test", p, 123456));
+	printf(" || byte:%d (vrai)\n", printf("%p %p %p", "test", p, (void *)123456));
 
 	write(1,"\n",1);
 
@@ -114,4 +115,5 @@ int main()
 
 	// write(1,"\n",1);
 
-}*/
+}
+*/

@@ -12,6 +12,17 @@
 
 #include "ft_printf.h"
 
+int	ft_putptr(unsigned long n)
+{
+	int		i;
+
+	i = 0;
+	if (n > 15)
+		i += ft_putptr(n / 16);
+	i += write(1, &"0123456789abcdef"[n % 16], 1);
+	return (i);
+}
+
 int	ft_putpointer(void *n)
 {
 	int	i;
@@ -24,7 +35,7 @@ int	ft_putpointer(void *n)
 	}
 	write(1, "0x", 2);
 	i = 2;
-	i += ft_putnbr_hexa_min((unsigned long)n);
+	i += ft_putptr((unsigned long)n);
 	return (i);
 }
 
@@ -32,13 +43,17 @@ int	ft_putpointer(void *n)
 // {
 //     // char *test = "Bonjour";
 //     char *test = NULL;
-//     ft_putpointeur((unsigned long)test);
-//     printf("%p\n\n", test);
+//     ft_putpointer(test);
+// 	write(1,"\n",1);
+//     printf("%p\n\n", INT_MIN);
 
 //     // test = "123456789132465789";
-//     // ft_putpointeur((unsigned long)test);
+//     // ft_putpointer(test);
+// 	// write(1,"\n",1);
 //     // printf("%p\n\n", test);
+
 //     // test = "abcdefiopioipoiipoip";
-//     // ft_putpointeur((unsigned long)test);
+//     // ft_putpointer(test);
+// 	// write(1,"\n",1);
 //     // printf("%p\n\n", test);
 // }
